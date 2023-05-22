@@ -1,3 +1,16 @@
+const { program } = require("commander");
+
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone");
+
+program.parse();
+
+const options = program.opts();
+
 const {
   listContacts,
   getContactById,
@@ -32,15 +45,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-// invokeAction({ action: "list" });
-// invokeAction({ action: "get", id: "rsKkOQUi80UsgVP" });
-
-// invokeAction({
-//   action: "add",
-//   name: "Yulia Rudenko",
-//   email: "yulyarudenko88@gmail.com",
-//   phone: "(050) 699-29-18",
-// });
-
-// invokeAction({ action: "remove", id: "rsKkOQUi80UsgVPCcLZZW" });
-// invokeAction({ action: "lis" });
+invokeAction(options);
